@@ -1,27 +1,36 @@
-# React + TypeScript + Vite
+# README - 使用useContext在不同頁面共享數據
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+這個專案示範如何使用`useContext`進行不同頁面的數據共享。我們提供兩種方法來實現這一目的。
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 方法一：使用useContext搭配<Outlet />對特定Route共享數據
 
-## Expanding the ESLint configuration
+1. **建立Context**: 建立一個`StringContext.tsx`在`context`資料夾。
+2. **建立Provider**: 在`StringProvider.tsx`使用`StringContext`並將其包裹在`<Outlet />`。
+3. **配置路由**: 在`router/index.tsx`中使用`StringProvider`作為element。
+4. **製作custom hook**: 創建一個`useStr.tsx`的custom hook。
+5. **使用custom hook**: 在`PageA.tsx`和`Home.tsx`中使用`useStr`。
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+---
 
-- Configure the top-level `parserOptions` property like this:
+## 方法二：將建立的Context的Provider包裹住RouterProvider
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+1. **建立Context**: 建立一個`StringContext.tsx`在`context`資料夾。
+2. **建立Provider**: 在`StringProvider.tsx`使用`StringContext`。
+3. **將Provider包裹**: 在`main.tsx`中將`RouterProvider`包裹在`StringProvider`裡。
+4. **使用Context**: 在`PageA.tsx`和`Home.tsx`中使用`useContext`取得context內的變數。
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+---
+
+## 注意事項
+
+- 若在非Provider底下的頁面使用`useStr`, 將會出現錯誤訊息。
+  
+---
+
+## 相關資源
+
+- [React Router-Router](https://reactrouter.com/en/main/route/route)
+
+---
