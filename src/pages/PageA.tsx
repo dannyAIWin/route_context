@@ -1,7 +1,8 @@
-import useStr from "@/hook/useStr";
-const PageA = () => {
-	const { str, setStr } = useStr();
+import { useContext } from "react";
+import { StringContext } from "@/context/StringContext";
 
+const PageA = () => {
+	const { str, setStr } = useContext(StringContext)!;
 	return (
 		<>
 			<div>PageA</div>

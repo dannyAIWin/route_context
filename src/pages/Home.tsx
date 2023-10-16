@@ -1,6 +1,8 @@
-import useStr from "@/hook/useStr";
+import { useContext } from "react";
+import { StringContext } from "@/context/StringContext";
+
 const Home = () => {
-	const { str, setStr } = useStr();
+	const { str, setStr } = useContext(StringContext)!;
 	return (
 		<>
 			<div>Home</div>
