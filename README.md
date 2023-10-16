@@ -29,8 +29,12 @@
   
 ---
 
-## 相關資源
+## 其他參考資料
 
-- [React Router-Router](https://reactrouter.com/en/main/route/route)
+path是optional的參數
+> [React Router-Router](https://reactrouter.com/en/main/route/route)
+
+若不使用物件的形式撰寫route，也可以透過createroutesfromelements help function來撰寫route，這樣就可以使用JSX的形式撰寫。
+> [createroutesfromelements](https://reactrouter.com/en/main/utils/create-routes-from-elements)
 
 ---
